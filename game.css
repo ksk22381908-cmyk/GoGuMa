@@ -1,0 +1,115 @@
+[hidden] { display: none !important; }
+main { max-width: 500px; }
+nav { display: flex; gap: 8px; margin: 20px 0; }
+nav button { margin: 0; padding: 13px 2px; border-radius: 14px; background: #eae9da; color: #536b3f; box-shadow: none; font-size: 12px; white-space: nowrap; }
+nav button[aria-pressed="true"] { background: #536b3f; color: white; }
+.page { flex: 1; }
+#farm { display: flex; flex-direction: column; }
+.intro { margin-top: 0; line-height: 1.7; }
+.hint { font-size: 12px; line-height: 1.8; color: #7a806d; }
+h2 small { font-size: 14px; font-weight: normal; float: right; padding-top: 5px; }
+#cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.card { margin: 0; padding: 10px 3px; background: #eeeadf; color: #54434c; box-shadow: none; border: 2px solid transparent; border-radius: 16px; font-size: 12px; }
+.card[aria-pressed="true"] { border-color: #6c8750; background: #e6edda; }
+.card:disabled { cursor: default; color: #929187; }
+.card svg { height: 78px; display: block; }
+.card small { display: block; margin-top: 5px; font-size: 10px; }
+.card:disabled svg { filter: grayscale(1); opacity: .25; }
+#reward { margin-top: 22px; padding: 16px; border-radius: 20px; background: #ede5ef; text-align: center; }
+#reward svg { height: 100px; display: block; }
+#reward p { font-size: 13px; line-height: 1.7; margin: 5px; }
+#reward button { margin-top: 10px; padding: 13px; font-size: 14px; }
+.map-wrap { position: relative; }
+#map { width: 100%; aspect-ratio: 1; display: block; border-radius: 22px; touch-action: none; background: #dce9bd; }
+#empty-village { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; background: #f8f5ebc9; border-radius: 22px; font-size: 15px; line-height: 1.8; }
+#place { min-height: 42px; font-size: 13px; line-height: 1.6; text-align: center; }
+.controls { display: grid; grid-template-columns: repeat(3, 54px); grid-template-rows: repeat(2, 48px); justify-content: center; gap: 7px; }
+.controls button { margin: 0; padding: 0; border-radius: 13px; touch-action: none; user-select: none; }
+.controls button[data-dir="up"] { grid-column: 2; }
+.controls button[data-dir="left"] { grid-column: 1; grid-row: 2; }
+.controls button[data-dir="down"] { grid-column: 2; grid-row: 2; }
+.controls button[data-dir="right"] { grid-column: 3; grid-row: 2; }
+.controls button:disabled { opacity: .4; }
+#village > .hint { text-align: center; }
+@media (max-width: 360px) { main { padding-left: 16px; padding-right: 16px; } h1 { font-size: 22px; } }
+#fighter, #battle-result { padding: 24px 15px; background: #eae8dc; border-radius: 22px; text-align: center; }
+#fighter svg, #battle-result svg { display: block; height: 120px; margin: auto; }
+#fighter p, #fighter small { font-size: 12px; color: #728065; }
+#battle-start:disabled { opacity: .45; cursor: default; }
+.battle-hud { display: flex; justify-content: space-between; font-size: 12px; padding: 14px 8px; background: #233c35; color: #dceacb; border-radius: 16px 16px 0 0; }
+.battle-hud .danger { color: #ff9c9c; }
+.arena-wrap { position: relative; }
+#arena { display: block; width: 100%; aspect-ratio: 1; background: #172b2a; touch-action: none; border-radius: 0 0 16px 16px; }
+#battle-overlay { position: absolute; inset: 0; padding: 10px; background: #132520ed; color: #edf4df; text-align: center; display: flex; flex-direction: column; justify-content: center; border-radius: 0 0 16px 16px; overflow-y: auto; }
+#battle-overlay h3 { margin: 3px 0; font-size: 18px; }
+#battle-overlay p, #battle-overlay > small { font-size: 11px; margin: 6px 0; }
+.upgrade-options { display: grid; gap: 7px; }
+.upgrade-options button { margin: 0; padding: 10px; border-radius: 12px; background: #f2ecd9; color: #394932; box-shadow: none; display: grid; grid-template-columns: 30px 1fr; text-align: left; gap: 3px 6px; font-size: 13px; }
+.upgrade-options button span { grid-row: span 2; align-self: center; font-size: 23px; }
+.upgrade-options button small { font-size: 10px; font-weight: normal; }
+#build-list { font-size: 11px; line-height: 1.7; }
+#build-list p { color: #6b765c; }
+#build-list div { display: flex; gap: 5px; flex-wrap: wrap; }
+#build-list span { padding: 4px 8px; border-radius: 8px; background: #e8e6d9; }
+.battle-actions { display: flex; gap: 10px; }
+.battle-actions button { margin-top: 16px; padding: 12px; font-size: 13px; border-radius: 12px; }
+.battle-actions button:last-child { background: #827567; box-shadow: 0 5px 0 #6d6257; }
+.result-icon { font-size: 48px; margin-bottom: 20px; }
+.terrain-guide { padding: 12px 15px; margin: 12px 0; border-radius: 14px; background: #e6e9dc; font-size: 12px; line-height: 1.8; }
+.terrain-guide small { color: #68755e; font-size: 11px; }
+.map-title { font-size: 15px; margin: 22px 2px 10px; }
+.map-title small { float: right; color: #78816e; font-weight: normal; }
+#map-select { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; }
+#map-select button { margin: 0; padding: 10px 2px; border-radius: 11px; box-shadow: none; background: #e8e6d9; color: #536b3f; font-size: 10px; }
+#map-select button span { display: block; font-size: 20px; margin-bottom: 3px; }
+#map-select button[aria-pressed="true"] { background: #536b3f; color: #fff; }
+#map-rule { min-height: 22px; text-align: center; }
+
+/* 8-BIT VISUAL SYSTEM */
+:root { --ink:#28382b; --paper:#fff4c7; --panel:#f3dda0; --green:#4f713d; --dark:#2f4b32; --purple:#8b5673; --pixel:4px; }
+* { border-radius: 0 !important; }
+html { background:#253928; image-rendering:pixelated; }
+body {
+  color:var(--ink);
+  font-family:"Courier New","Malgun Gothic",monospace;
+  font-weight:700;
+  background-color:#253928;
+  background-image:linear-gradient(45deg,#2e4632 25%,transparent 25%),linear-gradient(-45deg,#2e4632 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#2e4632 75%),linear-gradient(-45deg,transparent 75%,#2e4632 75%);
+  background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;
+}
+main { background:var(--paper); border-left:4px solid #17271c; border-right:4px solid #17271c; box-shadow:8px 0 #0005,-8px 0 #0005; }
+.eyebrow { color:#786039; letter-spacing:2px; text-shadow:2px 2px #fff8; }
+h1,h2,h3,strong { text-shadow:2px 2px #ffffff88; }
+.basket,.terrain-guide,#fighter,#battle-result,.card,#build-list span { background:var(--panel); border:3px solid var(--ink); box-shadow:4px 4px 0 #a8834c; }
+nav { gap:5px; }
+button,nav button,.card,.controls button,#map-select button,.upgrade-options button {
+  border:3px solid #203423 !important;
+  background:#63864d;color:#fff;
+  box-shadow:4px 4px 0 #203423 !important;
+  text-transform:none;
+}
+button:hover:not(:disabled),button[aria-pressed="true"] { background:#86a557; }
+button:active { transform:translate(4px,4px);box-shadow:0 0 0 #203423 !important; }
+button:focus-visible { outline:4px dashed #d8898a;outline-offset:3px; }
+nav button { background:#dcc98f;color:var(--ink); }
+.card { background:#f4dda1;color:var(--ink); }
+.card[aria-pressed="true"] { background:#bad383;border-color:#2f4b32 !important; }
+.card:disabled { background:#cbbf9e;color:#716b5b;box-shadow:4px 4px 0 #817660 !important; }
+svg,.pixel-character,#map,#arena { image-rendering:pixelated; image-rendering:crisp-edges; }
+.garden { border:4px solid var(--ink); margin:12px 0 18px; background:#c9dfa1; box-shadow:6px 6px 0 #7f9863; min-height:270px; }
+.garden svg { filter:saturate(.85) contrast(1.08); }
+progress { height:14px;border:3px solid var(--ink);background:#cabd91; }
+progress::-webkit-progress-bar { background:#cabd91; }
+progress::-webkit-progress-value { background:#71964f; }
+.map-wrap,.arena-wrap { border:4px solid var(--ink);box-shadow:6px 6px 0 #18291c; }
+#map,#arena { display:block;border:0 !important; }
+#empty-village { background:#fff4c7e8; }
+.battle-hud { border:4px solid var(--ink);border-bottom:0;background:#263e31;color:#f7e8a5; }
+#battle-overlay { border:4px solid #e5d494;background:#1c3126ee;color:#fff2bf; }
+.upgrade-options button { background:#f0d99b;color:var(--ink); }
+.terrain-guide summary { cursor:pointer;color:#394d31; }
+#map-select button { background:#d7c185;color:var(--ink); }
+#map-select button[aria-pressed="true"] { background:#587b43;color:#fff; }
+.result-icon { image-rendering:pixelated;text-shadow:4px 4px #0003; }
+footer { border-top:3px dashed #9f895b;padding-top:16px; }
+@media(max-width:360px){nav button{font-size:10px}.basket{padding:9px 7px}}

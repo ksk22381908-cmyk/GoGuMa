@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f8f5eb">
+  <title>작은 고구마밭</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #edeedc; color: #394932; font-family: system-ui, sans-serif; }
+    main { max-width: 460px; min-height: 100svh; margin: auto; padding: max(28px, env(safe-area-inset-top)) 26px max(24px, env(safe-area-inset-bottom)); background: #f8f5eb; display: flex; flex-direction: column; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .eyebrow { font-size: 11px; letter-spacing: 3px; color: #7d876d; }
+    h1 { font-size: 25px; letter-spacing: -1px; margin: 6px 0; }
+    .basket { background: #efeadc; padding: 12px 14px; border-radius: 18px; font-size: 13px; white-space: nowrap; }
+    .intro { margin: 28px 0 0; text-align: center; color: #7a806d; font-size: 14px; }
+    .garden { position: relative; flex: 1; min-height: 285px; display: grid; place-items: center; }
+    svg { width: 100%; max-height: 360px; overflow: visible; }
+    #plant { transform-origin: 180px 192px; transition: transform .4s; }
+    #potato { transition: opacity .4s; }
+    .watering #plant { animation: bounce .4s ease; }
+    @keyframes bounce { 50% { transform: translateY(-10px); } }
+    .spark { position: absolute; top: 22%; left: 47%; font-size: 32px; opacity: 0; pointer-events: none; }
+    .watering .spark { animation: drop .5s ease; }
+    @keyframes drop { 0% { opacity: 1; transform: translateY(-20px); } 100% { opacity: 0; transform: translateY(65px); } }
+    .info { text-align: center; }
+    h2 { margin: 0 0 10px; font-size: 22px; letter-spacing: -.7px; }
+    #message { color: #7a806d; font-size: 14px; min-height: 22px; margin: 0 0 24px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #7a806d; margin-bottom: 10px; }
+    progress { display: block; width: 100%; height: 8px; border: 0; border-radius: 8px; overflow: hidden; background: #e8e7d8; accent-color: #788a55; }
+    progress::-webkit-progress-bar { background: #e8e7d8; }
+    progress::-webkit-progress-value { background: #788a55; border-radius: 8px; transition: width .3s; }
+    progress::-moz-progress-bar { background: #788a55; }
+    button { width: 100%; border: none; border-radius: 21px; background: #536b3f; color: #fff; font: inherit; font-weight: 650; font-size: 17px; padding: 21px; margin-top: 26px; cursor: pointer; touch-action: manipulation; box-shadow: 0 5px 0 #405331; }
+    button:active { transform: translateY(3px); box-shadow: 0 2px 0 #405331; }
+    button:focus-visible { outline: 3px solid #ac7eaa; outline-offset: 5px; }
+    footer { text-align: center; font-size: 11px; color: #929580; margin-top: 24px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
+  </style>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <main>
+    <header><div><div class="eyebrow">MY LITTLE GARDEN</div><h1>작은 고구마밭</h1></div><div class="basket">🧺 수확 <strong id="count">0</strong>개</div></header>
+    <nav aria-label="게임 메뉴"><button data-view="farm" aria-pressed="true">🌱 밭</button><button data-view="collection" aria-pressed="false">🍠 도감</button><button data-view="village" aria-pressed="false">🏡 마을</button><button data-view="battle" aria-pressed="false">⚔️ 방어전</button></nav>
+    <section id="farm" class="page">
+    <p class="intro">서두르지 않아도 괜찮아, 무럭무럭 자라는 중.</p>
+    <div class="garden" id="garden">
+      <svg viewBox="0 0 360 300" role="img" aria-label="작은 밭에서 자라는 웃는 픽셀 고구마" shape-rendering="crispEdges">
+        <rect x="44" y="34" width="272" height="176" fill="#e9efcf"/><rect x="68" y="58" width="224" height="128" fill="#f8f1c9"/>
+        <rect x="268" y="50" width="24" height="24" fill="#e9bd55"/><rect x="274" y="44" width="12" height="36" fill="#e9bd55"/><rect x="262" y="56" width="36" height="12" fill="#e9bd55"/>
+        <rect x="76" y="86" width="42" height="10" fill="#fffdf5"/><rect x="88" y="78" width="22" height="26" fill="#fffdf5"/>
+        <rect x="72" y="178" width="216" height="52" fill="#a97852"/><rect x="60" y="190" width="240" height="28" fill="#a97852"/>
+        <rect x="72" y="170" width="216" height="28" fill="#d0a272"/><rect x="60" y="182" width="240" height="16" fill="#d0a272"/>
+        <g fill="#8f6748"><rect x="94" y="184" width="10" height="6"/><rect x="134" y="204" width="8" height="6"/><rect x="246" y="184" width="12" height="6"/><rect x="216" y="208" width="8" height="6"/></g>
+        <g id="plant">
+          <g id="potato"><rect x="154" y="138" width="52" height="72" fill="#4b3544"/><rect x="142" y="154" width="76" height="40" fill="#4b3544"/><rect x="154" y="132" width="40" height="84" fill="#9e6381"/><rect x="146" y="150" width="64" height="52" fill="#9e6381"/><rect x="162" y="148" width="8" height="40" fill="#c084a1"/><rect x="166" y="174" width="6" height="6" fill="#352c35"/><rect x="192" y="174" width="6" height="6" fill="#352c35"/><rect x="178" y="186" width="14" height="6" fill="#352c35"/><rect x="172" y="186" width="6" height="6" fill="#9e6381"/></g>
+          <rect x="178" y="98" width="8" height="44" fill="#53703d"/><rect x="184" y="78" width="8" height="26" fill="#53703d"/>
+          <rect x="146" y="96" width="36" height="24" fill="#76954e"/><rect x="138" y="88" width="24" height="24" fill="#76954e"/>
+          <rect x="190" y="80" width="34" height="22" fill="#4e743d"/><rect x="204" y="72" width="22" height="22" fill="#4e743d"/>
+        </g>
+        <rect x="82" y="238" width="196" height="12" fill="#e5d8ad"/><rect x="104" y="250" width="152" height="8" fill="#e5d8ad"/>
+      </svg>
+      <span class="spark" aria-hidden="true">💧</span>
+    </div>
+    <section class="info" aria-live="polite"><h2 id="stage">안녕, 작은 새싹!</h2><p id="message">물을 주면 고구마가 조금씩 자라요.</p></section>
+    <div class="progress-label"><span>자라는 중</span><span id="percent">0%</span></div>
+    <progress id="progress" max="5" value="0" aria-label="고구마 성장도"></progress>
+    <button id="action" type="button">💧 물 주기</button>
+    <div id="reward" hidden aria-live="polite"></div>
+    </section>
+    <section id="collection" class="page" hidden><h2>고구마 친구들 <small id="collected">0 / 30</small></h2><p class="hint">수확한 친구를 눌러 마을에서 함께 걸어요.<br>30종이 같은 확률로 등장해요. 중복 수확도 가능해요.</p><div id="cards"></div></section>
+    <section id="village" class="page" hidden><h2>고구마 마을</h2><p id="walking" class="hint"></p><div class="map-wrap"><canvas id="map" width="640" height="640" tabindex="0" aria-label="고구마 마을. 지도를 터치하거나 방향키, 아래 방향 버튼으로 이동하세요."></canvas><div id="empty-village">고구마를 한 번 수확하면<br>마을 산책을 시작할 수 있어요!</div></div><p id="place" role="status">분수 광장에서 산책을 시작해요.</p><div class="controls" aria-label="이동 버튼"><button data-dir="up" aria-label="위로 이동">▲</button><button data-dir="left" aria-label="왼쪽으로 이동">◀</button><button data-dir="down" aria-label="아래로 이동">▼</button><button data-dir="right" aria-label="오른쪽으로 이동">▶</button></div><p class="hint">지도를 터치해 이동 · 방향 버튼 꾹 누르기<br>PC에서는 방향키 또는 WASD</p></section>
+    <section id="battle" class="page" hidden>
+      <div class="battle-heading"><div class="eyebrow">SWEET POTATO DEFENSE</div><h2>밤의 밭 지키기</h2></div>
+      <p class="hint">자동 공격으로 해충을 막고, 카드 조합으로 강해지세요.</p>
+      <details class="terrain-guide"><summary>🪨 공격 차단 · 💧 이동 불가 · 🌿 감속</summary>🪨 바위: 이동·직선 공격 차단<br>💧 연못: 이동 차단 · 공격은 통과<br>🌿 수풀: 이동 속도 감소<br><small>곡사는 바위 너머 착탄 · 관통은 적만 통과<br>이동이 막히면 장애물 옆으로 돌아가세요.</small></details><div id="battle-lobby"><div id="fighter"></div><h3 class="map-title">전장 선택 <small id="map-count">1 / 12</small></h3><div id="map-select"></div><p id="map-rule" class="hint"></p><p class="hint">도감에서 출전할 친구를 바꿀 수 있어요.<br>8웨이브 돌파 시 랜덤 고구마 1마리!<br>해충이 35마리에 도달하면 밭을 빼앗겨요.</p><button id="battle-start">방어전 시작</button></div>
+      <div id="battle-play" hidden><div class="battle-hud"><strong id="wave-label"></strong><span id="bug-count"></span><span id="battle-time"></span></div><div class="arena-wrap"><canvas id="arena" width="600" height="600" tabindex="0" aria-label="밭 방어전. 드래그 또는 방향키로 이동하고 자동으로 공격합니다."></canvas><div id="battle-overlay" hidden aria-live="polite"></div></div><div id="build-list"></div><div class="battle-actions"><button id="battle-pause">일시정지</button><button id="battle-exit">전투 종료</button></div><p class="hint">화면을 누르거나 드래그해 이동 · PC 방향키/WASD<br>접촉 피해 없이 해충 수를 관리하는 디펜스예요.</p></div>
+      <div id="battle-result" hidden aria-live="polite"></div>
+    </section>
+    <footer id="save-note">작은 정성으로 키우는 나만의 고구마</footer>
+  </main>
+  <script src="game.js"></script>
+  <script src="tactics.js"></script>
+  <script src="battle.js"></script>
+</body>
+</html>

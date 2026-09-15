@@ -1,0 +1,22 @@
+{
+  "assets": [
+    {
+      "id": "hero_character",
+      "category": "characters",
+      "prompt": "2D game character sprite, young adventurer with a sword, front-facing pose, flat cel-shaded style, transparent background",
+      "model": "higgsfield-ai/soul/v2/standard"
+    },
+    {
+      "id": "forest_background",
+      "category": "backgrounds",
+      "prompt": "2D side-scrolling game background, mystical forest with sunbeams through trees, parallax-ready, painterly style",
+      "model": "higgsfield-ai/soul/v2/standard"
+    },
+    {
+      "id": "health_potion_icon",
+      "category": "items",
+      "prompt": "game UI item icon, glowing red health potion in a glass bottle, flat design, transparent background, 512x512",
+      "model": "higgsfield-ai/soul/v2/standard"
+    }
+  ]
+}
